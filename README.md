@@ -5,6 +5,9 @@ Modern Cryptography is the future. Asymmetric Encryption provides us with the ab
 
 It is strongly recommended you check out our other page.
 
+### But wait, isn't this insecure?
+To be honest, not really. The thought of being able to re-generate your key from a password is unfamiliar to most cryptographers. This is because most generation schemes use hardware and user generated randomness to generate keys, making it impossible to replicate. The Basyl AKG uses an algorithm that gives the same consistently high entropy in a very secure fashion. When encrypting with other (symmetric) algorithms, you usually use a password anyways. No one complains then.
+
 ### More Information
 
 More Information At:

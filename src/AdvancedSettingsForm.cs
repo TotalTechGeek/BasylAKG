@@ -125,7 +125,7 @@ namespace BasylEncryptionStandard.GUI
 
             if (File.Exists(ofd.FileName))
             {
-                StreamReader reader = new StreamReader("configuration.cbes");
+                StreamReader reader = new StreamReader(ofd.FileName);
 
                 InitialUpDown.Value = Int64.Parse(reader.ReadLine());
                 ExpandUpDown.Value = Int64.Parse(reader.ReadLine());

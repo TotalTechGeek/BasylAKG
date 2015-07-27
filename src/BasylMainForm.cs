@@ -1,4 +1,5 @@
-﻿using BasylEncryptionStandard.RSA;
+﻿using BasylEncryptionStandard.EC;
+using BasylEncryptionStandard.RSA;
 using BasylEncryptionStandard.GUI;
 using BasylEncryptionStandard;
 using System;
@@ -9,7 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace BasylRSA
+namespace BasylAKG
 {
     public partial class BasylMainForm : Form
     {
@@ -19,6 +20,12 @@ namespace BasylRSA
         {
             InitializeComponent();
             advForm = new AdvancedSettingsForm();
+            this.FormClosing += BasylMainForm_FormClosing;
+        }
+
+        private void BasylMainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(0);
         }
 
         private void fileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -26,13 +33,29 @@ namespace BasylRSA
 
         }
 
+        private BasylPseudoAdaptator GetAdaptor()
+        {
+            BasylPseudoAdaptator adaptor = null;
+            if (advForm.GetGenerationMode())
+            {
+                adaptor = new StrongerBasylPseudoAdaptor(advForm.GetSeedFunction());
+            }
+            else
+            {
+                adaptor = new SeedFunctionStringAdaptor(advForm.GetSeedFunction());
+            }
+            return adaptor;
+        }
 
         private IBasylKeyGenerator GetGeneratorFromUI()
         {
             if (generateFromFileCheckbox.Checked && File.Exists(fileNameTextbox.Text))
             {
+               
 
-                return new FileMutatedBKG(new BasylKeyGenerator("BasylKeyGenerationFromFile", advForm.GetInitial(), advForm.GetRounds(), advForm.GetLeftoff(), advForm.GetExpand(), advForm.GetKey(), new byte[32], new byte[4], new byte[4], true), File.OpenRead(fileNameTextbox.Text));
+
+
+                return new FileMutatedBKG(new BasylKeyGenerator("BasylKeyGenerationFromFile", advForm.GetInitial(), advForm.GetRounds(), advForm.GetLeftoff(), advForm.GetExpand(), advForm.GetKey(), new byte[32], new byte[4], new byte[4], true, GetAdaptor()), File.OpenRead(fileNameTextbox.Text));
             }
 
             return CreateGeneratorFromPassword(passwordTextbox.Text);
@@ -60,7 +83,7 @@ namespace BasylRSA
                 randomizerB[posB++ % 4] ^= hashOfPassword[posB % hashOfPassword.Length];
             }
 
-            return new BasylKeyGenerator(new string(charHash) + pass, advForm.GetInitial(), advForm.GetRounds(), advForm.GetLeftoff(), advForm.GetExpand(), advForm.GetKey(), hashOfPassword, randomizerA, randomizerB, true);
+            return new BasylKeyGenerator(new string(charHash) + pass, advForm.GetInitial(), advForm.GetRounds(), advForm.GetLeftoff(), advForm.GetExpand(), advForm.GetKey(), hashOfPassword, randomizerA, randomizerB, true, GetAdaptor());
         }
 
 
@@ -95,7 +118,7 @@ namespace BasylRSA
 
         private void configurationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            advForm.ShowDialog();
+            advForm.Show();
         }
 
         private void generateRSA_Click(object sender, EventArgs e)

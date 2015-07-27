@@ -3,6 +3,7 @@ using Org.BouncyCastle.Asn1.X9;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Generators;
 using Org.BouncyCastle.Crypto.Parameters;
+using BasylEncryptionStandard.RSA;
 using Org.BouncyCastle.Math.EC;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BasylEncryptionStandard.RSA
+namespace BasylEncryptionStandard.EC
 {
     class BasylEllipticUtilities
     {

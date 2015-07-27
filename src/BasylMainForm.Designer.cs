@@ -1,4 +1,4 @@
-﻿namespace BasylRSA
+﻿namespace BasylAKG
 {
     partial class BasylMainForm
     {

@@ -50,10 +50,10 @@
             this.cipherModeCheckbox = new System.Windows.Forms.CheckBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.seedFunctionTextbox = new System.Windows.Forms.TextBox();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.generateFunctionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.generationCheckBox = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.generateFunctionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.InitialUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ExpandUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RoundsUpDown)).BeginInit();
@@ -260,6 +260,7 @@
             // cipherModeCheckbox
             // 
             this.cipherModeCheckbox.AutoSize = true;
+            this.cipherModeCheckbox.Visible = false;
             this.cipherModeCheckbox.Location = new System.Drawing.Point(15, 134);
             this.cipherModeCheckbox.Name = "cipherModeCheckbox";
             this.cipherModeCheckbox.Size = new System.Drawing.Size(77, 17);
@@ -277,20 +278,6 @@
             this.seedFunctionTextbox.TabIndex = 13;
             this.seedFunctionTextbox.Text = "pos * pos + 2 * pos + pos * pos * pos + seed * pos + seed";
             this.toolTip1.SetToolTip(this.seedFunctionTextbox, "Function that the generation array is seeded with");
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.generateFunctionToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(172, 26);
-            // 
-            // generateFunctionToolStripMenuItem
-            // 
-            this.generateFunctionToolStripMenuItem.Name = "generateFunctionToolStripMenuItem";
-            this.generateFunctionToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.generateFunctionToolStripMenuItem.Text = "Generate Function";
-            this.generateFunctionToolStripMenuItem.Click += new System.EventHandler(this.generateFunctionToolStripMenuItem_Click);
             // 
             // generationCheckBox
             // 
@@ -312,6 +299,20 @@
             this.label6.Size = new System.Drawing.Size(82, 13);
             this.label6.TabIndex = 14;
             this.label6.Text = "Seed Function -";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.generateFunctionToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(172, 48);
+            // 
+            // generateFunctionToolStripMenuItem
+            // 
+            this.generateFunctionToolStripMenuItem.Name = "generateFunctionToolStripMenuItem";
+            this.generateFunctionToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.generateFunctionToolStripMenuItem.Text = "Generate Function";
+            this.generateFunctionToolStripMenuItem.Click += new System.EventHandler(this.generateFunctionToolStripMenuItem_Click);
             // 
             // AdvancedSettingsForm
             // 

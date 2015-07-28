@@ -19,6 +19,9 @@ namespace BasylEncryptionStandard.GUI
             InitializeComponent();
             manager = new QuickManager();
             this.FormClosing += AdvancedSettingsForm_FormClosing;
+            AllowDrop = true;
+            DragEnter += AdvancedSettingsForm_DragEnter;
+            DragDrop += AdvancedSettingsForm_DragDrop;
         }
 
         private void AdvancedSettingsForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -29,9 +32,45 @@ namespace BasylEncryptionStandard.GUI
 
         private void AdvancedSettingsForm_Load(object sender, EventArgs e)
         {
-            cipherModeCheckbox.Visible = false;
+           
         }
 
+        private void AdvancedSettingsForm_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] droppedFilenames = e.Data.GetData(DataFormats.FileDrop, true) as string[];
+            foreach (string filename in droppedFilenames)
+            {
+                if (System.IO.Path.GetExtension(filename).ToUpperInvariant() == ".CBES")
+                {
+                    Import(filename);
+                }
+                break;
+            }
+        }
+
+        private void AdvancedSettingsForm_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] filenames =
+                       e.Data.GetData(DataFormats.FileDrop, true) as string[];
+
+                bool dropEnabled = true;
+                foreach (string filename in filenames)
+                {
+                    if (System.IO.Path.GetExtension(filename).ToUpperInvariant() != ".CBES")
+                    {
+                        dropEnabled = false;
+                        break;
+                    }
+                }
+
+                if (dropEnabled)
+                    e.Effect = DragDropEffects.Copy;
+                else
+                    e.Effect = DragDropEffects.None;
+            }
+        }
 
         public void SetStats(int initial, int expand, int rounds, int leftoff, string extrakey, bool cipherMode, string seedFunction, bool strongMode)
         {
@@ -117,15 +156,11 @@ namespace BasylEncryptionStandard.GUI
             writer.Dispose();
         }
 
-        public void Import()
+        private void Import(string str)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Configuration Files|*.cbes";
-            ofd.ShowDialog();
-
-            if (File.Exists(ofd.FileName))
+            if (File.Exists(str))
             {
-                StreamReader reader = new StreamReader(ofd.FileName);
+                StreamReader reader = new StreamReader(str);
 
                 InitialUpDown.Value = Int64.Parse(reader.ReadLine());
                 ExpandUpDown.Value = Int64.Parse(reader.ReadLine());
@@ -147,6 +182,16 @@ namespace BasylEncryptionStandard.GUI
                 reader.Close();
                 reader.Dispose();
             }
+        }
+
+        public void Import()
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Configuration Files|*.cbes";
+            ofd.ShowDialog();
+
+            Import(ofd.FileName);
+           
         }
 
         private void importToolStripMenuItem_Click(object sender, EventArgs e)

@@ -10,7 +10,7 @@ The thought of being able to re-generate your key from a password is unfamiliar 
 
 ### More Information
 
-More Information At:
+Additional Information about the Tool :
  
  http://thecreatorjames.github.io/BasylAKG
 

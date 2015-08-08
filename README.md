@@ -12,14 +12,14 @@ The thought of being able to re-generate your key from a password is unfamiliar 
 
 Additional Information about the Tool :
  
- http://thecreatorjames.github.io/BasylAKG
+   http://thecreatorjames.github.io/BasylAKG
 
 For File Encryption :
 
- https://github.com/TheCreatorJames/BasylEncryptionTool
+  https://github.com/TheCreatorJames/BasylEncryptionTool
  
 Related Projects :
 
- https://github.com/TheCreatorJames/BESLibrary
+   https://github.com/TheCreatorJames/BESLibrary
 
- https://github.com/TheCreatorJames/BESLibraryCPP
+   https://github.com/TheCreatorJames/BESLibraryCPP

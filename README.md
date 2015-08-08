@@ -11,11 +11,15 @@ The thought of being able to re-generate your key from a password is unfamiliar 
 ### More Information
 
 More Information At:
+ 
  http://thecreatorjames.github.io/BasylAKG
 
 For File Encryption :
+
  https://github.com/TheCreatorJames/BasylEncryptionTool
  
 Related Projects :
+
  https://github.com/TheCreatorJames/BESLibrary
+
  https://github.com/TheCreatorJames/BESLibraryCPP
